@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Match</title>
+    <!-- Custom game styles and Bulma for navbar/layout -->
+    <link rel="stylesheet" href="../css/memory_match.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+</head>
+<body>
+
+    <!-- Top navigation: brand, burger menu (mobile), Play Game + High Scores links -->
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="memory_match.html">
+                <h1 class="title">Memory Match</h1>
+            </a>
+            <a class="navbar-burger burger" role="button" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" href="memory_match.html">Play Game</a>
+                <a class="navbar-item" href="high_scores.html">High Scores</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="section container">
+        <!-- Page title and instructions -->
+        <h1 class="title">Memory Match</h1>
+        <p class="subtitle">Flip two cards at a time. If they match, they stay revealed. Match all pairs to win.</p>
+
+        <!-- Two-column layout: status panel (left), board (right) -->
+        <div class="game-layout">
+            <!-- Left: Game Status — moves, matches, time, New Game / Reset -->
+            <div class="game-status-box">
+                <h2 class="game-status-title">Game Status</h2>
+                <div id="status-panel">
+                    <p><strong>Moves:</strong> <span id="moves">0</span></p>
+                    <p><strong>Matches:</strong> <span id="matches">0</span> / <span id="total-pairs">8</span></p>
+                    <p><strong>Time:</strong> <span id="time">0</span> s</p>
+                </div>
+                <hr class="game-status-divider">
+                <div class="game-status-buttons">
+                    <button id="btn-new-game" class="button button-new-game">New Game</button>
+                    <button id="btn-reset" class="button button-reset">Reset (Same Board)</button>
+                </div>
+            </div>
+
+            <!-- Right: Board — 4×4 grid filled by memory_match.js -->
+            <div class="board-panel">
+                <h2 class="board-panel-title">Board</h2>
+                <div id="board"></div>
+            </div>
+        </div>
+
+        <!-- Win message shown when all 8 pairs are matched -->
+        <div id="message" class="mt-4"></div>
+    </main>
+
+    <!-- Mobile: toggle navbar menu when burger is clicked -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var burger = document.querySelector('.navbar-burger');
+            var menu = document.getElementById('navbarBasicExample');
+            if (burger && menu) {
+                burger.addEventListener('click', function () {
+                    burger.classList.toggle('is-active');
+                    menu.classList.toggle('is-active');
+                });
+            }
+        });
+    </script>
+    <script src="../js/memory_match.js"></script>
+</body>
+</html>

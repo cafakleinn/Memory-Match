@@ -1,0 +1,206 @@
+/*  Layout  */
+
+/* Two-column layout: Game Status (left), Board (right). Stacks on narrow screens. */
+.game-layout {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .game-layout {
+        flex-direction: column;
+    }
+}
+
+/*  Game Status Box  */
+
+/* Left Panel: white card with shadow and rounded corners */
+.game-status-box {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 1.25rem 1.5rem;
+    flex: 0 0 auto;
+    min-width: 260px;
+    max-width: 320px;
+}
+
+/* Right Panel: board container, same card style */
+.board-panel {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    padding: 1.25rem 1.5rem;
+    flex: 1 1 320px;
+    min-width: 0;
+    overflow: hidden;
+}
+
+.board-panel-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #2d2d2d;
+    margin: 0 0 1rem 0;
+}
+
+.game-status-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #2d2d2d;
+    margin: 0 0 0.75rem 0;
+}
+
+/* Moves, Matches & Time Text */
+#status-panel {
+    margin: 0;
+}
+
+#status-panel p {
+    margin: 0.35rem 0;
+    font-size: 0.95rem;
+}
+
+#status-panel strong {
+    color: #2d2d2d;
+    font-weight: 700;
+}
+
+#status-panel span {
+    color: #6b6b6b;
+    font-weight: 400;
+}
+
+/* Horizontal line between stats and buttons */
+.game-status-divider {
+    border: none;
+    border-top: 1px solid #e8e8e8;
+    margin: 1rem 0;
+}
+
+/* New Game and Reset buttons stacked vertically */
+.game-status-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.button-new-game {
+    background-color: #2dd4bf !important;
+    border-color: transparent !important;
+    color: #fff !important;
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+}
+
+.button-new-game:hover {
+    background-color: #14b8a6 !important;
+    color: #fff !important;
+}
+
+.button-reset {
+    background-color: #e0e0e0 !important;
+    border-color: transparent !important;
+    color: #6b7280 !important;
+    border-radius: 8px;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+}
+
+.button-reset:hover {
+    background-color: #d1d5db !important;
+    color: #6b7280 !important;
+}
+
+/*  Game board  */
+
+/* 4×4 grid container; cards are added by memory_match.js */
+#board {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+    max-width: 100%;
+    padding: 0;
+    border-radius: 12px;
+}
+
+@media (max-width: 480px) {
+    #board {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.25rem;
+        border-radius: 10px;
+    }
+}
+
+/*  Card states  */
+
+/* Face-down: dark blue-grey; .card-face is hidden by default */
+.card {
+    aspect-ratio: 1;
+    background: #2a353e;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60px;
+    font-size: 1.5rem;
+    user-select: none;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+.card:hover:not(.flipped):not(.matched) {
+    background: #35424e;
+}
+
+/* Inner content (emoji); shown when .flipped or .matched */
+.card-face {
+    visibility: hidden;
+    opacity: 0;
+}
+
+/* Flipped: temporarily revealed, light green background and border */
+.card.flipped .card-face {
+    visibility: visible;
+    opacity: 1;
+}
+
+.card.flipped {
+    background: #e0f4e8;
+    border: 2px solid #6cc095;
+}
+
+/* Matched: permanently revealed, same look as flipped */
+.card.matched .card-face {
+    visibility: visible;
+    opacity: 1;
+}
+
+.card.matched {
+    background: #e0f4e8;
+    border: 2px solid #6cc095;
+    cursor: default;
+}
+
+/* Wrong: brief red highlight when the two flipped cards don't match */
+.card.wrong {
+    background: #ffebee;
+    border: 2px solid #f14668;
+}
+
+.card.wrong .card-face {
+    visibility: visible;
+    opacity: 1;
+}
+
+/*  High Scores page  */
+
+/* Table scrolls horizontally on small screens */
+#scores-table {
+    width: 100%;
+    overflow-x: auto;
+}
