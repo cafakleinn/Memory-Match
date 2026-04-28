@@ -21,7 +21,6 @@ Memory Match is a 4 x 4 card game where the player flips two cards at a time to 
 ```text
 .
 ├── README.md
-├── E.md
 ├── images
 │   ├── img1.webp
 │   ├── img2.webp
@@ -61,8 +60,6 @@ You can also open `src/pages/memory_match.html` directly in a browser, but using
 - High scores page: `src/pages/high_scores.html`
 
 ## Images
-
-The project includes image assets in the `images/` folder:
 
 ![Image 1](images/img1.webp)
 ![Image 2](images/img2.webp)
